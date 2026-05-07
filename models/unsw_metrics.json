@@ -1,0 +1,205 @@
+{
+  "train_shape": [
+    82332,
+    45
+  ],
+  "test_shape": [
+    175341,
+    45
+  ],
+  "feature_count": 42,
+  "categorical_columns": [
+    "proto",
+    "service",
+    "state"
+  ],
+  "stacking": {
+    "base_model_order": [
+      "rf",
+      "xgb",
+      "lgb",
+      "et",
+      "mlp"
+    ],
+    "meta_model": "LogisticRegression",
+    "oof_folds": 5,
+    "calibration_split": 0.2
+  },
+  "calibration": {
+    "selected_method": "temperature",
+    "platt_eval": {
+      "score": 0.2171673969567844,
+      "brier": 0.02051473236466816,
+      "ece15": 0.006252435518112288,
+      "extreme_share": 0.9676322341653003
+    },
+    "isotonic_eval": {
+      "score": 0.1911783798714936,
+      "brier": 0.017922777758176047,
+      "ece15": 4.153138903073398e-18,
+      "extreme_share": 0.8662780105665877
+    },
+    "temperature_eval": {
+      "score": 0.08169318752096794,
+      "brier": 0.0296444106906183,
+      "ece15": 0.10409755366069925,
+      "extreme_share": 0.0
+    },
+    "temperature": 2.5
+  },
+  "base_model_metrics": {
+    "rf": {
+      "accuracy": 0.8983010248601296,
+      "confusion_matrix": [
+        [
+          55021,
+          979
+        ],
+        [
+          16853,
+          102488
+        ]
+      ]
+    },
+    "xgb": {
+      "accuracy": 0.8991051722072989,
+      "confusion_matrix": [
+        [
+          54846,
+          1154
+        ],
+        [
+          16537,
+          102804
+        ]
+      ]
+    },
+    "lgb": {
+      "accuracy": 0.8995671291939706,
+      "confusion_matrix": [
+        [
+          54837,
+          1163
+        ],
+        [
+          16447,
+          102894
+        ]
+      ]
+    },
+    "et": {
+      "accuracy": 0.8906587734756846,
+      "confusion_matrix": [
+        [
+          53633,
+          2367
+        ],
+        [
+          16805,
+          102536
+        ]
+      ]
+    },
+    "mlp": {
+      "accuracy": 0.8892671993429945,
+      "confusion_matrix": [
+        [
+          54439,
+          1561
+        ],
+        [
+          17855,
+          101486
+        ]
+      ]
+    }
+  },
+  "ensemble_raw": {
+    "accuracy": 0.9012039397516839,
+    "confusion_matrix": [
+      [
+        54819,
+        1181
+      ],
+      [
+        16142,
+        103199
+      ]
+    ],
+    "report": {
+      "0": {
+        "precision": 0.7725229351333831,
+        "recall": 0.9789107142857143,
+        "f1-score": 0.8635565252321579,
+        "support": 56000.0
+      },
+      "1": {
+        "precision": 0.9886855719486491,
+        "recall": 0.8647405334294166,
+        "f1-score": 0.9225687351656753,
+        "support": 119341.0
+      },
+      "accuracy": 0.9012039397516839,
+      "macro avg": {
+        "precision": 0.8806042535410161,
+        "recall": 0.9218256238575655,
+        "f1-score": 0.8930626301989166,
+        "support": 175341.0
+      },
+      "weighted avg": {
+        "precision": 0.9196480527052612,
+        "recall": 0.9012039397516839,
+        "f1-score": 0.9037215530674954,
+        "support": 175341.0
+      }
+    },
+    "ece15": 0.08283700038925594,
+    "brier": 0.08471683036048865,
+    "extreme_low<=0.05": 0.35383053592713626,
+    "extreme_high>=0.95": 0.5719768907443211
+  },
+  "ensemble_calibrated": {
+    "accuracy": 0.9012039397516839,
+    "confusion_matrix": [
+      [
+        54819,
+        1181
+      ],
+      [
+        16142,
+        103199
+      ]
+    ],
+    "report": {
+      "0": {
+        "precision": 0.7725229351333831,
+        "recall": 0.9789107142857143,
+        "f1-score": 0.8635565252321579,
+        "support": 56000.0
+      },
+      "1": {
+        "precision": 0.9886855719486491,
+        "recall": 0.8647405334294166,
+        "f1-score": 0.9225687351656753,
+        "support": 119341.0
+      },
+      "accuracy": 0.9012039397516839,
+      "macro avg": {
+        "precision": 0.8806042535410161,
+        "recall": 0.9218256238575655,
+        "f1-score": 0.8930626301989166,
+        "support": 175341.0
+      },
+      "weighted avg": {
+        "precision": 0.9196480527052612,
+        "recall": 0.9012039397516839,
+        "f1-score": 0.9037215530674954,
+        "support": 175341.0
+      }
+    },
+    "ece15": 0.13691308782799197,
+    "brier": 0.07021187230928971,
+    "extreme_low<=0.05": 0.0,
+    "extreme_high>=0.95": 0.0
+  }
+}

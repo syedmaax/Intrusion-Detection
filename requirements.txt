@@ -1,0 +1,16 @@
+Flask==2.3.2
+Flask-CORS==4.0.0
+scikit-learn==1.3.2
+pandas==2.2.2
+numpy==1.26.4
+joblib==1.3.1
+xgboost==2.0.0
+lightgbm==4.1.0
+requests==2.31.0
+
+# Advanced Ensemble ML Dependencies:
+# - scikit-learn: Random Forest, Extra Trees, MLP Neural Network
+# - xgboost: Extreme Gradient Boosting
+# - lightgbm: Microsoft LightGBM
+# - joblib: Model serialization
+# - pandas/numpy: Data processing
