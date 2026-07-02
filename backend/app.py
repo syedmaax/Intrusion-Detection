@@ -442,6 +442,7 @@ def model_info():
             'model_type': active_profile,
             'model_loaded': True,
             'feature_count': len(feature_names) if feature_names else None,
+            'feature_names': [str(f) for f in feature_names] if feature_names is not None else [],
             'algorithms': list(models.keys()),
             'ensemble_method': 'Calibrated Stacking Ensemble',
             'regularization_applied': True,
@@ -467,6 +468,22 @@ def model_info():
         })
     else:
         return jsonify({'model_loaded': False, 'error': 'Models not loaded'}), 404
+
+@app.route('/metrics', methods=['GET'])
+def get_metrics():
+    if ensemble_metadata:
+        return jsonify(ensemble_metadata)
+    else:
+        try:
+            candidates = ['unsw_metrics.json', 'ensemble_regularized_metadata.json']
+            for candidate in candidates:
+                path = os.path.join(MODELS_DIR, candidate)
+                if os.path.exists(path):
+                    with open(path, 'r', encoding='utf-8') as f:
+                        return jsonify(json.load(f))
+        except Exception as e:
+            return jsonify({'error': str(e)}), 500
+        return jsonify({'error': 'Ensemble metrics not loaded or found'}), 404
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)
